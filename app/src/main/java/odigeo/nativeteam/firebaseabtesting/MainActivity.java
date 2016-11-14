@@ -14,5 +14,8 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.mainactivity_container, MainView.getInstance())
                 .commit();
+
+        getSupportActionBar()
+                .setTitle(R.string.app_name);
     }
 }

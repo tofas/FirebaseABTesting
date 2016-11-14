@@ -34,6 +34,7 @@ public class MainView extends Fragment implements MainViewInterface {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.main_view, container, false);
+        return view;
     }
 }
