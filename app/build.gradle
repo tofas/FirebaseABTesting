@@ -12,12 +12,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'HOST_URL', '"https://api.github.com/search/repositories?"'
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -38,5 +43,9 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.0.+'
     compile 'com.android.support:recyclerview-v7:24.0.+'
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.0-RC1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.7.3'
 }
