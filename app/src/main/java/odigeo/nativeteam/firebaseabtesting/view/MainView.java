@@ -9,14 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import odigeo.nativeteam.firebaseabtesting.presenter.MainPresenter;
 import odigeo.nativeteam.firebaseabtesting.R;
 import odigeo.nativeteam.firebaseabtesting.controller.Repo;
+import odigeo.nativeteam.firebaseabtesting.presenter.MainPresenter;
 
 /**
  * Created by daniel.morales on 14/11/16.
@@ -30,6 +31,8 @@ public class MainView extends Fragment implements MainViewInterface {
 
     @BindView(R.id.main_progressLayout)
     RelativeLayout relativeProgressLayout;
+    @BindView(R.id.tvTitle)
+    TextView mTvTitle;
     @BindView(R.id.main_recycler)
     RecyclerView recyclerView;
 
@@ -58,10 +61,14 @@ public class MainView extends Fragment implements MainViewInterface {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_view, container, false);
         ButterKnife.bind(this, view);
-
+        presenter.initContent();
         initRecyclerView();
-
         return view;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        mTvTitle.setText(title);
     }
 
     @Override
