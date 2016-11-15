@@ -35,8 +35,8 @@ public class RepoInteractor {
     public Observable<List<Repo>> getListOfRepos() {
         return controller.getRepos("library+android")
                 .map(json -> parseListOfRepos(json))
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private List<Repo> parseListOfRepos(JsonObject json) {
@@ -52,14 +52,13 @@ public class RepoInteractor {
     }
 
     private Repo parseRepoObject(JsonObject asJsonObject) {
-        Repo repo = new Repo();
-
-        repo.id = asJsonObject.get(ID).getAsLong();
-        repo.name = asJsonObject.get(NAME).getAsString();
-        repo.url = asJsonObject.get(URL).getAsString();
-        repo.description = asJsonObject.get(DESCRIPTION).getAsString();
-        repo.createdAt = asJsonObject.get(CREATED_AT).getAsString();
-        repo.language = asJsonObject.get(LANGUAGE).getAsString();
+        Repo repo = new Repo(asJsonObject.get(ID).getAsLong(),
+                asJsonObject.get(NAME).getAsString(),
+                asJsonObject.get(URL).getAsString(),
+                asJsonObject.get(DESCRIPTION).getAsString(),
+                asJsonObject.get(CREATED_AT).getAsString(),
+                asJsonObject.has(LANGUAGE)&&!asJsonObject.get(LANGUAGE).isJsonNull()?
+                        asJsonObject.get(LANGUAGE).getAsString():"NONE");
 
         return repo;
     }

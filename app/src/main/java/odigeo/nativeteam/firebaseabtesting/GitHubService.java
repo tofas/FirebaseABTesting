@@ -5,8 +5,10 @@ import com.google.gson.JsonObject;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -14,6 +16,6 @@ import rx.Observable;
  */
 
 public interface GitHubService {
-    @GET("users/{user}/repos")
-    Observable<JsonObject> listRepos(@Path("q") String searchParam);
+    @GET("search/repositories")
+    Observable<JsonObject> listRepos(@Query("q") String searchParam);
 }
