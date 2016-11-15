@@ -1,4 +1,4 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +14,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import odigeo.nativeteam.firebaseabtesting.presenter.MainPresenter;
+import odigeo.nativeteam.firebaseabtesting.R;
+import odigeo.nativeteam.firebaseabtesting.controller.Repo;
 
 /**
  * Created by daniel.morales on 14/11/16.

@@ -1,6 +1,8 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.view;
 
 import java.util.List;
+
+import odigeo.nativeteam.firebaseabtesting.controller.Repo;
 
 /**
  * Created by daniel.morales on 14/11/16.

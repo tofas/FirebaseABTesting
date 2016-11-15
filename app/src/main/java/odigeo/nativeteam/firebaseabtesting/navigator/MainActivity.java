@@ -1,7 +1,10 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.navigator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import odigeo.nativeteam.firebaseabtesting.view.MainView;
+import odigeo.nativeteam.firebaseabtesting.R;
 
 public class MainActivity extends AppCompatActivity {
 

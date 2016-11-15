@@ -1,4 +1,4 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.retrofit;
 
 import com.google.gson.JsonObject;
 
@@ -17,5 +17,5 @@ import rx.Observable;
 
 public interface GitHubService {
     @GET("search/repositories")
-    Observable<JsonObject> listRepos(@Query("q") String searchParam);
+    Observable<JsonObject> listRepos(@Query("q") String searchParam, @Query("page") int page, @Query("per_page") int perPage);
 }

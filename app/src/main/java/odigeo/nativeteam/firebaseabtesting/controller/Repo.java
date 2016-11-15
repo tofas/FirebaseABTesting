@@ -1,4 +1,4 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.controller;
 
 /**
  * Created by daniel.morales on 14/11/16.

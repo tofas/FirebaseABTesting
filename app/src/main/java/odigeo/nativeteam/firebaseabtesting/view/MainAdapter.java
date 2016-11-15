@@ -1,4 +1,4 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.view;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +13,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import odigeo.nativeteam.firebaseabtesting.R;
+import odigeo.nativeteam.firebaseabtesting.controller.Repo;
 
 /**
  * Created by daniel.morales on 14/11/16.
@@ -51,7 +53,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RepoViewHolder
 
     public void refreshRepos(List<Repo> repos) {
         repositories.clear();
-        repos.addAll(repos);
+        repositories.addAll(repos);
         notifyDataSetChanged();
     }
 

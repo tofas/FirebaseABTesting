@@ -1,4 +1,8 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.presenter;
+
+import odigeo.nativeteam.firebaseabtesting.interactor.RepoInteractor;
+import odigeo.nativeteam.firebaseabtesting.interactor.RepoInteractorInterface;
+import odigeo.nativeteam.firebaseabtesting.view.MainViewInterface;
 
 /**
  * Created by daniel.morales on 14/11/16.
@@ -7,16 +11,16 @@ package odigeo.nativeteam.firebaseabtesting;
 public class MainPresenter {
 
     private MainViewInterface view;
-    private RepoInteractor repoInteractor;
+    private RepoInteractorInterface repoInteractorInterface;
 
     public MainPresenter(MainViewInterface view) {
         this.view = view;
-        repoInteractor = new RepoInteractor();
+        repoInteractorInterface = new RepoInteractor();
     }
 
     public void loadListOfRepos() {
         view.showLoading();
-        repoInteractor
+        repoInteractorInterface
                 .getListOfRepos()
                 .limit(10)
                 .subscribe(repos -> {

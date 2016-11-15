@@ -1,13 +1,14 @@
-package odigeo.nativeteam.firebaseabtesting;
+package odigeo.nativeteam.firebaseabtesting.interactor;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import odigeo.nativeteam.firebaseabtesting.controller.Repo;
+import odigeo.nativeteam.firebaseabtesting.controller.RepoController;
+import odigeo.nativeteam.firebaseabtesting.controller.RepoControllerInterface;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -16,7 +17,7 @@ import rx.schedulers.Schedulers;
  * Created by daniel.morales on 14/11/16.
  */
 
-public class RepoInteractor {
+public class RepoInteractor implements RepoInteractorInterface {
 
     private final String ITEMS = "items";
     private final String ID = "id";
@@ -26,12 +27,13 @@ public class RepoInteractor {
     private final String CREATED_AT = "created_at";
     private final String LANGUAGE = "language";
 
-    private RepoController controller;
+    private RepoControllerInterface controller;
 
     public RepoInteractor() {
         controller = new RepoController();
     }
 
+    @Override
     public Observable<List<Repo>> getListOfRepos() {
         return controller.getRepos("library+android")
                 .map(json -> parseListOfRepos(json))
