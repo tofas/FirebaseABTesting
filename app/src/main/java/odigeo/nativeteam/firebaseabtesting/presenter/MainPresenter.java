@@ -1,8 +1,8 @@
 package odigeo.nativeteam.firebaseabtesting.presenter;
 
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
@@ -23,7 +23,9 @@ public class MainPresenter {
 
     private MainViewInterface view;
     private RepoInteractorInterface repoInteractorInterface;
+
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public MainPresenter(MainViewInterface view) {
         this.view = view;
@@ -34,6 +36,8 @@ public class MainPresenter {
                 .build();
         mFirebaseRemoteConfig.setConfigSettings(configSettings);
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(((Fragment) view).getContext());
     }
 
     public void initContent() {
