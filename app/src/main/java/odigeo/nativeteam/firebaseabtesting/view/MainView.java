@@ -31,8 +31,8 @@ public class MainView extends Fragment implements MainViewInterface {
 
     @BindView(R.id.main_progressLayout)
     RelativeLayout relativeProgressLayout;
-    @BindView(R.id.tvTitle)
-    TextView mTvTitle;
+    @BindView(R.id.tvInfoMessage)
+    TextView mTVInfoMessage;
     @BindView(R.id.main_recycler)
     RecyclerView recyclerView;
 
@@ -67,8 +67,14 @@ public class MainView extends Fragment implements MainViewInterface {
     }
 
     @Override
-    public void setTitle(String title) {
-        mTvTitle.setText(title);
+    public void showInfoMessage(String title) {
+        mTVInfoMessage.setVisibility(View.VISIBLE);
+        mTVInfoMessage.setText(title);
+    }
+
+    @Override
+    public void hideInfoMessage() {
+        mTVInfoMessage.setVisibility(View.GONE);
     }
 
     @Override

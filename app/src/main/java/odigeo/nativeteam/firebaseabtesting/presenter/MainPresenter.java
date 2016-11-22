@@ -1,13 +1,10 @@
 package odigeo.nativeteam.firebaseabtesting.presenter;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-
-import java.util.concurrent.Executor;
 
 import odigeo.nativeteam.firebaseabtesting.BuildConfig;
 import odigeo.nativeteam.firebaseabtesting.R;
@@ -21,7 +18,8 @@ import odigeo.nativeteam.firebaseabtesting.view.MainViewInterface;
 
 public class MainPresenter {
 
-    private static final String WELCOME_MESSAGE_KEY = "welcome_message";
+    private static final String INFO_MESSAGE_KEY = "info_message";
+    private static final String SHOW_INFO_MESSAGE = "show_info_message";
 
     private MainViewInterface view;
     private RepoInteractorInterface repoInteractorInterface;
@@ -39,8 +37,7 @@ public class MainPresenter {
     }
 
     public void initContent() {
-        view.setTitle(mFirebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY));
-        fetchTitleConfig();
+        fetchWarningConfig();
     }
 
     public void loadListOfRepos() {
@@ -59,10 +56,9 @@ public class MainPresenter {
                         () -> view.hideLoading());
     }
 
-    public void fetchTitleConfig() {
-        long cacheExpiration = 3600; // 1 hour in seconds.
-        // If in developer mode cacheExpiration is set to 0 so each fetch will retrieve values from
-        // the server.
+    private void fetchWarningConfig() {
+        long cacheExpiration = 3600;
+
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
         }
@@ -70,19 +66,18 @@ public class MainPresenter {
         mFirebaseRemoteConfig.fetch(cacheExpiration)
                 .addOnCompleteListener(((Fragment) view).getActivity(), task -> {
                     if (task.isSuccessful()) {
-                        Log.d("FIREBASE", "Fetch Succeeded");
-
-                        // Once the config is successfully fetched it must be activated before newly fetched
-                        // values are returned.
                         mFirebaseRemoteConfig.activateFetched();
-                    } else {
-                        Log.d("FIREBASE", "Fetch Failed");
                     }
-                    updateTitleConfig();
+                    checkInfoMessage();
                 });
     }
 
-    void updateTitleConfig() {
-        view.setTitle(mFirebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY));
+    private void checkInfoMessage() {
+        if(mFirebaseRemoteConfig.getBoolean(SHOW_INFO_MESSAGE)) {
+            view.showInfoMessage(mFirebaseRemoteConfig.getString(INFO_MESSAGE_KEY));
+        } else {
+            view.hideInfoMessage();
+        }
+
     }
 }

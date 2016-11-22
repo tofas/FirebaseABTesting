@@ -9,7 +9,8 @@ import odigeo.nativeteam.firebaseabtesting.controller.Repo;
  */
 public interface MainViewInterface {
 
-    void setTitle(String title);
+    void showInfoMessage(String title);
+    void hideInfoMessage();
 
     void showLoading();
 

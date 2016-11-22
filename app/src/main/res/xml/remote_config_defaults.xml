@@ -5,11 +5,11 @@
         <value>Fetching config…</value>
     </entry>
     <entry>
-        <key>welcome_message_caps</key>
+        <key>show_info_message</key>
         <value>false</value>
     </entry>
     <entry>
-        <key>welcome_message</key>
-        <value>Welcome to my awesome app!</value>
+        <key>info_message</key>
+        <value></value>
     </entry>
 </defaultsMap>
