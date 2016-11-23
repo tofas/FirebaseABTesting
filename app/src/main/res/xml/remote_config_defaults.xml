@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
-        <key>loading_phrase</key>
-        <value>Fetching config…</value>
-    </entry>
-    <entry>
         <key>show_info_message</key>
         <value>false</value>
     </entry>
     <entry>
         <key>info_message</key>
-        <value></value>
+        <value/>
+    </entry>
+    <entry>
+        <key>experiment_1</key>
+        <value/>
     </entry>
 </defaultsMap>

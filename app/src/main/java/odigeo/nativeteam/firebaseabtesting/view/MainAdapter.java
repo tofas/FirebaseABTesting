@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,8 @@ import odigeo.nativeteam.firebaseabtesting.controller.Repo;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RepoViewHolder> {
 
+    private static final String EXPERIMENT_1 = "experiment_1";
+
     private final Fragment context;
     private ArrayList<Repo> repositories;
 
@@ -32,8 +36,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RepoViewHolder
 
     @Override
     public RepoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RepoViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.repo_item_layout_a, parent, false));
+        RepoViewHolder repoViewHolder;
+
+        String experiment1 = FirebaseRemoteConfig.getInstance().getString(EXPERIMENT_1);
+
+        if(experiment1.isEmpty()) {
+            repoViewHolder = new RepoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.repo_item_layout, parent, false));
+        } else if (experiment1.equals("variant_A")){
+            repoViewHolder = new RepoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.repo_item_layout_a, parent, false));
+        } else {
+            repoViewHolder = new RepoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.repo_item_layout_b, parent, false));
+        }
+
+        return repoViewHolder;
     }
 
     @Override

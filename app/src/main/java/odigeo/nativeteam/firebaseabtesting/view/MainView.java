@@ -80,7 +80,6 @@ public class MainView extends Fragment implements MainViewInterface {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.loadListOfRepos();
     }
 
     private void initRecyclerView() {

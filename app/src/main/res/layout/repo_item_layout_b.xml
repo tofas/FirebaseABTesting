@@ -8,8 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="@color/cardview_dark_background">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/repo_name_textview"
@@ -17,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -26,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@+id/repo_name_textview"
-            android:background="@color/cardview_light_background"/>
+            android:background="@color/cardview_dark_background"/>
 
         <LinearLayout
             android:id="@+id/description_layout"
@@ -41,16 +39,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"/>
+                android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:id="@+id/repo_description_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:maxLines="4"
-                android:textColor="@color/white"/>
+                android:maxLines="4"/>
         </LinearLayout>
 
         <Button

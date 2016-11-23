@@ -2,6 +2,7 @@ package odigeo.nativeteam.firebaseabtesting.presenter;
 
 import android.support.v4.app.Fragment;
 
+import com.google.android.gms.measurement.AppMeasurement;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -38,29 +39,21 @@ public class MainPresenter {
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(((Fragment) view).getContext());
+
+        configExperiment1();
+    }
+
+    private void configExperiment1() {
+        String experiment1_variant = mFirebaseRemoteConfig.getString("experiment_1");
+        AppMeasurement.getInstance(((Fragment) view).getContext()).setUserProperty("ExperimentCardLayout", experiment1_variant);
     }
 
     public void initContent() {
-        fetchWarningConfig();
-    }
-
-    public void loadListOfRepos() {
         view.showLoading();
-        repoInteractorInterface
-                .getListOfRepos()
-                .limit(10)
-                .subscribe(repos -> {
-                            view.refreshRepoList(repos);
-                            view.hideLoading();
-                        },
-                        throwable -> {
-                            throwable.printStackTrace();
-                            view.hideLoading();
-                        },
-                        () -> view.hideLoading());
+        fetchRemoteConfig();
     }
 
-    private void fetchWarningConfig() {
+    private void fetchRemoteConfig() {
         long cacheExpiration = 3600;
 
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
@@ -73,6 +66,7 @@ public class MainPresenter {
                         mFirebaseRemoteConfig.activateFetched();
                     }
                     checkInfoMessage();
+                    loadListOfRepos();
                 });
     }
 
@@ -83,5 +77,20 @@ public class MainPresenter {
             view.hideInfoMessage();
         }
 
+    }
+
+    private void loadListOfRepos() {
+        repoInteractorInterface
+                .getListOfRepos()
+                .limit(10)
+                .subscribe(repos -> {
+                            view.refreshRepoList(repos);
+                            view.hideLoading();
+                        },
+                        throwable -> {
+                            throwable.printStackTrace();
+                            view.hideLoading();
+                        },
+                        () -> view.hideLoading());
     }
 }
